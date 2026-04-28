@@ -7,7 +7,7 @@ export default function Home() {
 
       {/* Imagen */}
       <Image
-        src="/ICONO.png"
+        src="/Luna.png"
         alt="Ícono"
         width={500}
         height={500}

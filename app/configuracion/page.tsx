@@ -3,14 +3,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import { db } from "../firebase/firebase.js";
+import { db } from "../firebase/firebase.js";
 import { ref, set } from "firebase/database";
 
 export default function Home() {
 
   function setFeliz() {
     set(ref(db, "expresiones"), 0);
+    set(ref(db, "expresiones"), 0);
   }
 
+  function setCansado() {
+    set(ref(db, "expresiones"), 1);
+
+  }
+  function setEmocionado() {
+    set(ref(db, "expresiones"), 2);
   function setCansado() {
     set(ref(db, "expresiones"), 1);
 
@@ -34,6 +42,7 @@ export default function Home() {
 
         <h2 className="subtitulos_subpaginas">
           Expresiones faciales
+          Expresiones faciales
         </h2>
 
         {/* Botones de expresiones */}
@@ -41,6 +50,8 @@ export default function Home() {
         <div className="flex gap-4 mt-4 z-[10] relative">
           <button
             onClick={setFeliz}
+            className="px-12 py-4 rounded-xl border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition font-medium min-w-[150px]">
+          
             className="px-12 py-4 rounded-xl border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition font-medium min-w-[150px]">
           
             Feliz
@@ -55,16 +66,20 @@ export default function Home() {
           onClick={setEmocionado}
             className="px-12 py-4 rounded-xl border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition font-medium min-w-[150px]">
             Emocionado
+          onClick={setCansado}
+            className="px-12 py-4 rounded-xl border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition font-medium min-w-[150px]">
+            Cansado
+          </button>
+
+          <button
+          onClick={setEmocionado}
+            className="px-12 py-4 rounded-xl border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition font-medium min-w-[150px]">
+            Emocionado
           </button>
         </div>
 
-        <h2 className="subtitulos_subpaginas">
-          Volumen
-        </h2>
         
-        <h2 className="subtitulos_subpaginas">
-          Batería
-        </h2>
+        
       </div>
 
       {/* 3. La barra de navegación ahora es HERMANA del div de contenido. */}

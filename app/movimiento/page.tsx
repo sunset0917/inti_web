@@ -107,6 +107,20 @@ export default function Home() {
                 Mirar a la derecha
               </button>
 
+              {/* Bloque Mirar a la derecha */}
+              <button 
+                onClick={ejecutarArriba}
+                className="px-12 py-4 rounded-xl border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition font-medium min-w-[150px]">
+                Mirar a hacia arriba
+              </button>
+
+              {/* Bloque Mirar a la derecha */}
+              <button 
+                onClick={ejecutarAbajo}
+                className="px-12 py-4 rounded-xl border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition font-medium min-w-[150px]">
+                Mirar a hacia abajo
+              </button>
+
               {/* Bloque Asentir */}
               <button 
                 onClick={asentir}

@@ -2,7 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { db } from "../firebase/firebase.js";
+import { ref, set } from "firebase/database";
 export default function Home() {
+
+  function activarAutonomo() {
+    set(ref(db, "autonomia"), 1);
+  }
+
+  function desactivarAutonomo() {
+    set(ref(db, "autonomia"), 0);
+  }
 
   return (
     // 1. Usamos un Fragmento (<>) para devolver dos elementos hermanos.
@@ -18,12 +28,18 @@ export default function Home() {
         </h1>
         {/* Botones de Modo Autónomo */}
         <div className="mt-8 flex flex-col gap-4 w-full max-w-sm">
-          <button className="botones_otro">
-            Activar modo autónomo
+          <button 
+          onClick={activarAutonomo}
+          className="px-12 py-4 rounded-xl border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition font-medium min-w-[150px]">
+    
+          Activar modo autónomo
           </button>
 
-          <button className="botones_otro">
-            Desactivar modo autónomo
+          <button 
+          onClick={desactivarAutonomo}
+          className="px-12 py-4 rounded-xl border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition font-medium min-w-[150px]">
+            
+          Desactivar modo autónomo
           </button>
         </div>
 
