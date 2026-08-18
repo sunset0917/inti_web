@@ -3,14 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { db } from "../firebase/firebase.js";
-import { db } from "../firebase/firebase.js";
 import { ref, set } from "firebase/database";
-
+import FrasesRecurrentes from "../components/Frases"; 
 export default function Home() {
 
   function setFeliz() {
     set(ref(db, "expresiones"), 0);
-    set(ref(db, "expresiones"), 0);
   }
 
   function setCansado() {
@@ -19,14 +17,7 @@ export default function Home() {
   }
   function setEmocionado() {
     set(ref(db, "expresiones"), 2);
-  function setCansado() {
-    set(ref(db, "expresiones"), 1);
-
-  }
-  function setEmocionado() {
-    set(ref(db, "expresiones"), 2);
-  }
-
+}
   return (
     // 1. Usamos un Fragmento (<>) para devolver dos elementos hermanos.
     <>
@@ -40,8 +31,7 @@ export default function Home() {
           Configuración
         </h1>
 
-        <h2 className="subtitulos_subpaginas">
-          Expresiones faciales
+        <h2 className="text-xl font-bold mb-3 text-black dark:text-white">
           Expresiones faciales
         </h2>
 
@@ -51,11 +41,9 @@ export default function Home() {
           <button
             onClick={setFeliz}
             className="px-12 py-4 rounded-xl border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition font-medium min-w-[150px]">
-          
-            className="px-12 py-4 rounded-xl border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition font-medium min-w-[150px]">
-          
             Feliz
           </button>
+
           <button
           onClick={setCansado}
             className="px-12 py-4 rounded-xl border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition font-medium min-w-[150px]">
@@ -66,48 +54,31 @@ export default function Home() {
           onClick={setEmocionado}
             className="px-12 py-4 rounded-xl border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition font-medium min-w-[150px]">
             Emocionado
-          onClick={setCansado}
-            className="px-12 py-4 rounded-xl border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition font-medium min-w-[150px]">
-            Cansado
           </button>
 
-          <button
-          onClick={setEmocionado}
-            className="px-12 py-4 rounded-xl border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition font-medium min-w-[150px]">
-            Emocionado
-          </button>
         </div>
 
-        
+        <FrasesRecurrentes />
         
       </div>
 
       {/* 3. La barra de navegación ahora es HERMANA del div de contenido. */}
       {/*    Ahora se posicionará correctamente con respecto a la ventana. */}
       <div className="w-full fixed bottom-0 left-0 p-4 bg-white dark:bg-black flex justify-around items-center z-50">
-        <Link
-          href="/control"
-          className="botones_web"
-        >
-          Control de Dispositivo
+        <Link href="/movimiento" className="botones_web">
+          Movimiento
         </Link>
-        <Link
-          href="/audios"
-          className="botones_web"
-        >
+
+        <Link href="/audios" className="botones_web">
           Audios
         </Link>
-        <Link
-          href="/configuracion"
-          className="botones_web"
-        >
-          Configuracion
+
+        <Link href="/terapia" className="botones_web">
+          Terapia
         </Link>
-        <Link
-          href="/movimiento"
-          className="botones_web"
-        >
-          Movimiento
+
+        <Link href="/configuracion" className="botones_web">
+          Configuracion
         </Link>
       </div>
     </>

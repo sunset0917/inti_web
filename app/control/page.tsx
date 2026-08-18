@@ -48,30 +48,21 @@ export default function Home() {
 
       {/* 3. La barra de navegación ahora es HERMANA del div de contenido. */}
       {/*    Ahora se posicionará correctamente con respecto a la ventana. */}
-      <div className="w-full fixed bottom-0 left-0 p-4 bg-white dark:bg-black flex justify-around items-center z-50">
-        <Link
-          href="/control"
-          className="botones_web"
-        >
-          Control de Dispositivo
+      <div className="w-full fixed bottom-0 left-0 p-4 bg-white dark:bg-black flex justify-around items-center">
+        <Link href="/movimiento" className="botones_web">
+          Movimiento
         </Link>
-        <Link
-          href="/audios"
-          className="botones_web"
-        >
+
+        <Link href="/audios" className="botones_web">
           Audios
         </Link>
-        <Link
-          href="/configuracion"
-          className="botones_web"
-        >
-          Configuracion
+
+        <Link href="/terapia" className="botones_web">
+          Terapia
         </Link>
-        <Link
-          href="/movimiento"
-          className="botones_web"
-        >
-          Movimiento
+
+        <Link href="/configuracion" className="botones_web">
+          Configuracion
         </Link>
       </div>
     </>

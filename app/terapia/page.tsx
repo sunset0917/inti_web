@@ -7,31 +7,31 @@ import { ref, set } from "firebase/database";
 export default function Home() {
   // Datos simulados
   const doctor = [
-    { id: 1, titulo: "El León y el Ratón", duracion: "3 min" },
-    { id: 2, titulo: "La Tortuga y la Liebre", duracion: "2 min" },
-    { id: 3, titulo: "El Niño Generoso", duracion: "3 min" },
-    { id: 4, titulo: "Caperucita Roja", duracion: "2 min" },
-    { id: 5, titulo: "Blancanieves", duracion: "2 min" },
-    { id: 6, titulo: "El Gato con Botas", duracion: "3 min" },
+    { id: 1, titulo: "¿Cómo late tu corazón?",audio: "doctor_corazon" },
+    { id: 2, titulo: "¿Cómo estarán tus ojos?",audio: "doctor_ojos" },
+    { id: 3, titulo: "¿Cómo estarán tus oídos?",audio: "doctor_oido" },
+    { id: 4, titulo: "¿Cómo estarán tus dientes?",audio: "doctor_dientes" },
+    { id: 5, titulo: "¿Tendrás fiebre?",audio: "doctor_fiebre" },
+    { id: 6, titulo: "Con lo que hemos aprendido, te dejarás curar por los médicos",audio: "dejar_curar_doctor" },
+    { id: 7, titulo: "Eres valiente y vas a recuperarte",audio: "valiente" },
+    { id: 8, titulo: "Nos veremos en otra ocasión",audio: "otra_ocasion" },
   ];
 
   const paciente = [
-    { id: 1, texto: "Hola" },
-    { id: 2, texto: "Adios" },
-    { id: 3, texto: "Muy Bien" },
-    { id: 4, texto: "Gracias" },
-    { id: 5, texto: "Si" },
-    { id: 6, texto: "No" },
-    { id: 7, texto: "Tal vez" },
-    { id: 8, texto: "Intentémoslo de nuevo" },
-    { id: 9, texto: "Tú puedes" },
-    { id: 10, texto: "Estoy orgulloso" },
+    { id: 1, texto: "Doctor, ¿cómo está mi corazón?",audio: "paciente_corazon" },
+    { id: 2, texto: "Doctor, ¿cómo están mis ojos?",audio: "paciente_ojos" },
+    { id: 3, texto: "Doctor, ¿cómo están mis oídos?",audio: "paciente_oidos" },
+    { id: 4, texto: "Doctor, ¿cómo están mi boca?",audio: "paciente_boca" },
+    { id: 5, texto: "Doctor, ¿cómo están mis heridas de quemadura?",audio: "paciente_quemadura" },
+    { id: 6, texto: "Doctor, entonces ¿la curación me ayuda a estar mejor?",audio: "paciente_curacion" },
+    { id: 7, texto: "Ahora yo me voy a dejar curar para sanar mis heridas y regresar pronto a mi casa",audio: "dejar_curar_heridas" },
+    { id: 8, texto: "Nos veremos en otra ocasión",audio: "otra_ocasion" },
   ];
 
   
-  const reproducirAudio = async (texto: string) => {
+  const reproducirAudio = async (audio: string) => {
     await set(ref(db, "audio"), {
-      nombre: texto.toLowerCase(),
+      nombre: audio.toLowerCase(),
       timestamp: Date.now(),
     });
   
@@ -42,7 +42,7 @@ export default function Home() {
       <div className="min-h-screen w-full bg-zinc-50 dark:bg-black p-6 pb-40">
   {/* Título */}
   <h1 className="titulos_subpaginas mb-6">
-    Audios
+    Terapia
   </h1>
 
     {/* CONTENIDO EN UNA SOLA COLUMNA */}
@@ -51,14 +51,14 @@ export default function Home() {
       {/* Frases debajo */}
       <div>
         <h2 className="text-xl font-bold mb-3 text-black dark:text-white">
-          Frases
+          Juego: Cuando Inti es paciente
         </h2>
 
         <div className="grid grid-cols-2 gap-3">
           {paciente.map((frase) => (
             <div
               key={frase.id}
-              onClick={() => reproducirAudio(frase.texto)}
+              onClick={() => reproducirAudio(frase.audio)}
               className="p-4 rounded-2xl bg-white dark:bg-zinc-900 shadow cursor-pointer hover:scale-[1.02] transition"
             >
               <p>{frase.texto}</p>
@@ -70,18 +70,17 @@ export default function Home() {
       {/* Cuentos */}
       <div>
         <h2 className="text-xl font-bold mb-3 text-black dark:text-white">
-          Cuentos
+          Juego: Cuando Inti es doctor
         </h2>
 
         <div className="grid grid-cols-2 gap-3">
           {doctor.map((cuento) => (
             <div
               key={cuento.id}
-              onClick={() => reproducirAudio(cuento.titulo)}
+              onClick={() => reproducirAudio(cuento.audio)}
               className="p-4 rounded-2xl bg-white dark:bg-zinc-900 shadow cursor-pointer hover:scale-[1.02] transition"
             >
-              <p className="font-semibold">{cuento.titulo}</p>
-              <p className="text-sm opacity-70">{cuento.duracion}</p>
+              <p>{cuento.titulo}</p>
             </div>
           ))}
         </div>
@@ -94,9 +93,7 @@ export default function Home() {
       <FrasesRecurrentes />
 
       {/* Barra navegación */}
-      
       <div className="w-full fixed bottom-0 left-0 p-4 bg-white dark:bg-black flex justify-around items-center">
-        
         <Link href="/movimiento" className="botones_web">
           Movimiento
         </Link>
@@ -108,6 +105,7 @@ export default function Home() {
         <Link href="/terapia" className="botones_web">
           Terapia
         </Link>
+
 
         <Link href="/configuracion" className="botones_web">
           Configuracion
