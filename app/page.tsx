@@ -9,7 +9,7 @@ export default function Home() {
   const [accessGranted, setAccessGranted] = useState(false);
   const [error, setError] = useState("");
 
-  const correctPassword = "MotaTuPatrona"; // <-- cambia esto
+  const correctPassword = "Luna"; // <-- cambia esto
 
   const handleLogin = () => {
     if (password === correctPassword) {
@@ -20,7 +20,6 @@ export default function Home() {
     }
   };
 
-  // 🔐 Pantalla de contraseña
   if (!accessGranted) {
     return (
       <div className="min-h-screen w-full bg-zinc-50 dark:bg-black flex flex-col items-center justify-center p-10">
