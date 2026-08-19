@@ -16,22 +16,22 @@ export default function Home() {
   ];
 
   const paciente = [
-    { id: 1, texto: "Hola" },
-    { id: 2, texto: "Adios" },
-    { id: 3, texto: "Muy Bien" },
-    { id: 4, texto: "Gracias" },
-    { id: 5, texto: "Si" },
-    { id: 6, texto: "No" },
-    { id: 7, texto: "Tal vez" },
-    { id: 8, texto: "Intentémoslo de nuevo" },
-    { id: 9, texto: "Tú puedes" },
-    { id: 10, texto: "Estoy orgulloso" },
+    { id: 1, texto: "Hola", audio: "hola" },
+    { id: 2, texto: "Adios", audio: "adios" },
+    { id: 3, texto: "Muy Bien" ,audio: "muy_bien"},
+    { id: 4, texto: "Gracias",audio:"gracias" },
+    { id: 5, texto: "Si" ,audio:"si"},
+    { id: 6, texto: "No", audio:"si" },
+    { id: 7, texto: "Tal vez" , audio:"tal_vez"},
+    { id: 8, texto: "Intentémoslo de nuevo" ,audio:"de_nuevo"},
+    { id: 9, texto: "Tú puedes",audio:"tu_puedes" },
+    { id: 10, texto: "Estoy orgulloso",audio:"orgulloso" },
   ];
 
   
-  const reproducirAudio = async (texto: string) => {
+  const reproducirAudio = async (audio: string) => {
     await set(ref(db, "audio"), {
-      nombre: texto.toLowerCase(),
+      nombre: audio.toLowerCase(),
       timestamp: Date.now(),
     });
   
@@ -58,7 +58,7 @@ export default function Home() {
           {paciente.map((frase) => (
             <div
               key={frase.id}
-              onClick={() => reproducirAudio(frase.texto)}
+              onClick={() => reproducirAudio(frase.audio)}
               className="p-4 rounded-2xl bg-white dark:bg-zinc-900 shadow cursor-pointer hover:scale-[1.02] transition"
             >
               <p>{frase.texto}</p>
